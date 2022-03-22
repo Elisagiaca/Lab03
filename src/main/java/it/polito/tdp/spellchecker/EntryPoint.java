@@ -2,6 +2,8 @@ package it.polito.tdp.spellchecker;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+
+import it.polito.tdp.spellchecker.model.Dictionary;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,12 +14,25 @@ public class EntryPoint extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        // Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
+    	//CREO IL LOADER
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = loader.load();
+        
+        //CON IL LOADER CREO IL CONTROLLER
+        FXMLController controller =loader.getController();
+        
+        //CREO LA SCENA (VISTA)
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        scene.getRoot().setStyle("-fx-font-family: 'serif'");
         
+        scene.getRoot().setStyle("-fx-font-family: 'serif'");
+       
+        //CREO IL MODELLO
+        Dictionary model = new Dictionary();
+        controller.setModel(model);
+       
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();
