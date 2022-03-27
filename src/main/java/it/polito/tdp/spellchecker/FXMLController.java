@@ -80,7 +80,7 @@ public class FXMLController {
     	String stringaLingua = cmbLanguage.getValue();
     	dizionario.loadDictionary(stringaLingua);
     	
-    	listaOutputSbagliate.addAll(dizionario.spellCheckText(listaInserite));
+    	listaOutputSbagliate.addAll(dizionario.spellCheckTextDichotomic(listaInserite));
     	
     	end = System.nanoTime();
     	labelTempo.setText("Spell check completed in "+(end-start)+" nanoseconds.");
